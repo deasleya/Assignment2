@@ -8,8 +8,8 @@
  * minimum time that a live TV broadcast should last to cover their journey regardless of the contestantsâ€™
  * initial positions and the intersection they finally meet. You are hired to help ACM answer this question.
  * You may assume the following:
- *    ï‚· Each contestant walks at a given estimated speed.
- *    ï‚· The city is a collection of intersections in which some pairs are connected by one-way
+ *    (i) · Each contestant walks at a given estimated speed.
+ *    (ii)· The city is a collection of intersections in which some pairs are connected by one-way
  * streets that the contestants can use to traverse the city.
  *
  * This class implements the competition using Dijkstra's algorithm
@@ -17,8 +17,30 @@
 
 import java.io.*;
 
-
 public class CompetitionDijkstra {
+	
+	/*public static void main(String[] args){
+		BufferedReader br;
+		try {
+			FileReader fr = new FileReader("C:\\Users\\Owner\\Documents\\2nd Year\\CS2010\\Assignment2\\src\\tinyEWD.txt");
+			br = new BufferedReader(fr);
+			String line = null;
+			//line = br.readLine();
+			int is = Integer.parseInt(br.readLine());
+			int stre = Integer.parseInt(br.readLine());
+			System.out.println(is + "\n" + stre);
+			 while ((line=br.readLine()) != null) {
+			   System.out.println(line);
+			 }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	}*/
 	
 	private static final double INFINITY = Integer.MAX_VALUE;
 	
@@ -53,19 +75,19 @@ public class CompetitionDijkstra {
  // initialise the array and get slowest person
  	private void initialiseArray() {  
  		try {
- 			BufferedReader br = new BufferedReader(new FileReader(filename));
+ 			FileReader fr = new FileReader(filename);
+ 			BufferedReader br = new BufferedReader(fr);
  			numberOfIntersections = Integer.parseInt(br.readLine());
  			numberOfStreets = Integer.parseInt(br.readLine());
  			if (numberOfIntersections == 0 || numberOfStreets == 0)
  				validFile = false;
  			else {
- 				cityRoadNetwork = new double[numberOfIntersections][numberOfIntersections]; // create array
- 				// init array values to infinite except for a
+ 				cityRoadNetwork = new double[numberOfIntersections][numberOfIntersections]; //initialise array
  				for (int i = 0; i < numberOfIntersections; i++)
  					for (int j = 0; j < numberOfIntersections; j++)
- 						cityRoadNetwork[i][j] = INFINITY;
+ 						cityRoadNetwork[i][j] = INFINITY;  //Begin by setting all values in array to infinity
 
- 				// read from file and write to array
+ 				//read file and add to array
  				String line = br.readLine();
  				while (line != null) {
  					String[] linesInFile = line.split(" ");
@@ -91,56 +113,57 @@ public class CompetitionDijkstra {
 		if (!validFile)
 			return -1;
 		
-		double longestShortest = 0;
+		double worstCaseDistance = 0;
 		for (int i = 0; i < numberOfIntersections; i++) {
-			double[] distance = new double[numberOfIntersections];
-			boolean[] permanent = new boolean[numberOfIntersections];
-			boolean[] reached = new boolean[numberOfIntersections];
-			int numActive = 1;
+			double[] distanceTo = new double[numberOfIntersections];
+			boolean[] permanentNode = new boolean[numberOfIntersections];
+			boolean[] beenReached = new boolean[numberOfIntersections];
+			int activeNodes = 1;
 			for (int m = 0; m < numberOfIntersections; m++) {
-				distance[m] = INFINITY;
-				permanent[m] = false;
-				reached[m] = false;
+				distanceTo[m] = INFINITY;
+				permanentNode[m] = false;
+				beenReached[m] = false;
 			}
-			distance[i] = 0;
-			reached[i] = true;
+			distanceTo[i] = 0;
+			beenReached[i] = true;
 
-			do {
-				int currentLowestAddr = getLowestAddr(distance, permanent);
+			while (activeNodes > 0){
+				int nextIntersection = getShortestPath(distanceTo, permanentNode);
 				for (int j = 0; j < numberOfIntersections; j++) {
-					if ((cityRoadNetwork[currentLowestAddr][j] + distance[currentLowestAddr]) < distance[j] && !permanent[j]) {
-						distance[j] = (cityRoadNetwork[currentLowestAddr][j] + distance[currentLowestAddr]);
-						numActive++;
-						reached[j] = true;
+					if ((cityRoadNetwork[nextIntersection][j] + distanceTo[nextIntersection]) < distanceTo[j] && !permanentNode[j]) {
+						distanceTo[j] = (cityRoadNetwork[nextIntersection][j] + distanceTo[nextIntersection]);
+						activeNodes++;
+						beenReached[j] = true;
 					}
 				}
-				permanent[currentLowestAddr] = true;
-				numActive--;
-			} while (numActive > 0);
-			double tmpLS = getHighestValue(distance);
-			if (tmpLS == INFINITY)
+				permanentNode[nextIntersection] = true;
+				activeNodes--;
+			} 
+			double temp = getHighestValue(distanceTo);
+			if (temp == INFINITY)
 				return -1;
-			longestShortest = (tmpLS > longestShortest) ? tmpLS : longestShortest;
+			if(temp > worstCaseDistance)
+				worstCaseDistance = temp;
 		}
-		longestShortest *= 1000; // convert to meters
-		return (int) Math.ceil(longestShortest / slowestWalkingSpeed);
+		worstCaseDistance *= 1000; // convert to meters
+		return (int) Math.ceil(worstCaseDistance / slowestWalkingSpeed);  //return worst case value
 		
     }
 
     
-    private int getLowestAddr(double[] arr, boolean[] perm) {
+    private int getShortestPath(double[] a, boolean[] permanent) {
 		int lowest = 0;
-		for (int i = 1; i < arr.length; i++)
-			if((arr[i] < arr[lowest] && !perm[i]) || perm[lowest]) 
+		for (int i = 1; i < a.length; i++)
+			if((a[i] < a[lowest] && !permanent[i]) || permanent[lowest]) 
 				lowest = i;
 		return lowest;
 	}
 
-	private double getHighestValue(double[] arr) {
+	private double getHighestValue(double[] a) {
 		double highest = 0;
-		for (int i = 0; i < arr.length; i++)
-			if(arr[i] > highest) 
-				highest = arr[i];
+		for (int i = 0; i < a.length; i++)
+			if(a[i] > highest) 
+				highest = a[i];
 		return highest;
 	}
 }

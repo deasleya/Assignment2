@@ -8,8 +8,8 @@
  * minimum time that a live TV broadcast should last to cover their journey regardless of the contestantsâ€™
  * initial positions and the intersection they finally meet. You are hired to help ACM answer this question.
  * You may assume the following:
- *    ï‚· Each contestant walks at a given estimated speed.
- *    ï‚· The city is a collection of intersections in which some pairs are connected by one-way
+ *    (i)·  Each contestant walks at a given estimated speed.
+ *    (ii)· The city is a collection of intersections in which some pairs are connected by one-way
  * streets that the contestants can use to traverse the city.
  *
  * This class implements the competition using Floyd-Warshall algorithm
@@ -53,7 +53,6 @@ public class CompetitionFloydWarshall {
     
     // initialise the array
  	private void initialiseArray() {
- 		System.out.println(Integer.MAX_VALUE);   
  		try {
  			BufferedReader br = new BufferedReader(new FileReader(filename));
  			numberOfIntersections = Integer.parseInt(br.readLine());
