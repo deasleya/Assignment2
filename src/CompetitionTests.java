@@ -1,6 +1,4 @@
 import static org.junit.Assert.*;
-//import java.io.*;
-
 import org.junit.Test;
 
 public class CompetitionTests {
@@ -11,27 +9,26 @@ public class CompetitionTests {
     @Test
     public void testDijkstraConstructor() {
     	CompetitionDijkstra acm = new CompetitionDijkstra(file1, 60,70,84);
-    	System.out.println(acm.filename);
     	assertEquals(acm.slowestWalkingSpeed, 60);
-    	System.out.println(acm.timeRequiredforCompetition());
-    	System.out.println(acm.numberOfIntersections);
-    	System.out.println(acm.numberOfStreets);
+    	//System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.numberOfIntersections);
+    	//System.out.println(acm.numberOfStreets);
   
     	acm = new CompetitionDijkstra(file1, 70,60,84);
     	assertEquals(acm.slowestWalkingSpeed, 60);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     	
     	acm = new CompetitionDijkstra(file1, 90,60,50);
     	assertEquals(acm.slowestWalkingSpeed, 50);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     	
     	acm = new CompetitionDijkstra(file1, 70,60,84);
     	assertEquals(acm.validFile, false);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     	
     	acm = new CompetitionDijkstra(file1, 70,60,84);
     	assertEquals(acm.validFile, false);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     	
     }
     
@@ -40,15 +37,15 @@ public class CompetitionTests {
     public void testDijkstra() {
     	CompetitionDijkstra acm = new CompetitionDijkstra(file1, 60,70,84);
     	assertEquals(acm.slowestWalkingSpeed, 60);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
   
     	acm = new CompetitionDijkstra(file1, 70,60,84);
     	assertEquals(acm.slowestWalkingSpeed, 60);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     	
     	acm = new CompetitionDijkstra(file1, 90,60,50);
     	assertEquals(acm.slowestWalkingSpeed, 50);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     }
     
 
@@ -57,23 +54,23 @@ public class CompetitionTests {
 
     	CompetitionFloydWarshall acm = new CompetitionFloydWarshall(file1, 60,70,84);
     	assertEquals(acm.slowestWalkingSpeed, 60);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
   
     	acm = new CompetitionFloydWarshall(file1, 70,60,84);
     	assertEquals(acm.slowestWalkingSpeed, 60);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     	
     	acm = new CompetitionFloydWarshall(file1, 90,60,50);
     	assertEquals(acm.slowestWalkingSpeed, 50);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     	
     	acm = new CompetitionFloydWarshall(file1, 70,60,84);
     	assertEquals(acm.validFile, false);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     	
     	acm = new CompetitionFloydWarshall(file1, 70,60,84);
     	assertEquals(acm.validFile, false);
-    	System.out.println(acm.timeRequiredforCompetition());
+    	//System.out.println(acm.timeRequiredforCompetition());
     }
 
 
@@ -81,7 +78,7 @@ public class CompetitionTests {
     public void testFW() {
     	CompetitionFloydWarshall acm = new CompetitionFloydWarshall(file1, 60,70,84);
     	assertEquals(acm.slowestWalkingSpeed, 60);
-    	acm.timeRequiredforCompetition();
+    	//acm.timeRequiredforCompetition();
   
     	acm = new CompetitionFloydWarshall(file1, 70,60,84);
     	assertEquals(acm.slowestWalkingSpeed, 60);

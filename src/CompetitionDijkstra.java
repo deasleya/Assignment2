@@ -72,7 +72,7 @@ public class CompetitionDijkstra {
 			slowestWalkingSpeed = sC;
     }
 
- // initialise the array and get slowest person
+ //create an array to implement Dijkstra shortest path algorithm
  	private void initialiseArray() {  
  		try {
  			FileReader fr = new FileReader(filename);
@@ -109,7 +109,6 @@ public class CompetitionDijkstra {
 
     	if ((sA > 100 || sA < 50) || (sB > 100 || sB < 50) || (sC > 100 || sC < 50))
 			return -1;
-		
 		if (!validFile)
 			return -1;
 		
@@ -146,7 +145,7 @@ public class CompetitionDijkstra {
 				worstCaseDistance = temp;
 		}
 		worstCaseDistance *= 1000; // convert to meters
-		return (int) Math.ceil(worstCaseDistance / slowestWalkingSpeed);  //return worst case value
+		return (int) Math.ceil(worstCaseDistance / slowestWalkingSpeed);  //return worst case time
 		
     }
 

@@ -51,22 +51,22 @@ public class CompetitionFloydWarshall {
         
     }
     
-    // initialise the array
+    //create an array to implement Floyd Warshall algorithm
  	private void initialiseArray() {
  		try {
- 			BufferedReader br = new BufferedReader(new FileReader(filename));
+ 			FileReader fr = new FileReader(filename);
+ 			BufferedReader br = new BufferedReader(fr);
  			numberOfIntersections = Integer.parseInt(br.readLine());
  			numberOfStreets = Integer.parseInt(br.readLine());
  			if (numberOfIntersections == 0 || numberOfStreets == 0)
  				validFile = false;
  			else {
- 				cityRoadNetwork = new double[numberOfIntersections][numberOfIntersections]; // create array
- 				// init array values to infinite except for a
+ 				cityRoadNetwork = new double[numberOfIntersections][numberOfIntersections]; //initialise array
  				for (int i = 0; i < numberOfIntersections; i++)
  					for (int j = 0; j < numberOfIntersections; j++)
- 						cityRoadNetwork[i][j] = INFINITY;
+ 						cityRoadNetwork[i][j] = INFINITY;  //Begin by setting all values in array to infinity
 
- 				// read from file and write to array
+ 				//read file and add to array
  				String line = br.readLine();
  				while (line != null) {
  					String[] linesInFile = line.split(" ");
@@ -77,8 +77,7 @@ public class CompetitionFloydWarshall {
  		} catch (Exception e) {
  			validFile = false;
  		}
-
- 		
+ 	
  	}
 
 
@@ -89,25 +88,24 @@ public class CompetitionFloydWarshall {
         
     	if ((sA > 100 || sA < 50) || (sB > 100 || sB < 50) || (sC > 100 || sC < 50))
 			return -1;
-
-		if (!validFile)
+    	if (!validFile)
 			return -1;
 
 		// run Floyd Warshall
-		for (int k = 0; k < numberOfIntersections; k++)
-			for (int i = 0; i < numberOfIntersections; i++)
-				for (int j = 0; j < numberOfIntersections; j++)
-					if (cityRoadNetwork[i][k] + cityRoadNetwork[k][j] < cityRoadNetwork[i][j])
-						cityRoadNetwork[i][j] = cityRoadNetwork[i][k] + cityRoadNetwork[k][j];
+		for (int i = 0; i < numberOfIntersections; i++)
+			for (int j = 0; j < numberOfIntersections; j++)
+				for (int k = 0; k < numberOfIntersections; k++)
+					if (cityRoadNetwork[j][i] + cityRoadNetwork[i][k] < cityRoadNetwork[j][k])
+						cityRoadNetwork[j][k] = cityRoadNetwork[j][i] + cityRoadNetwork[i][k];
 
 		double max = getMax();
 		if (max == INFINITY)
 			return -1;
 		max *= 1000; // convert to meters
-		return (int) Math.ceil(max / slowestWalkingSpeed);
+		return (int) Math.ceil(max / slowestWalkingSpeed);  //return worst case time
     }
     
- // gets the largest num in the array
+ //to find largest number in the array
  	private double getMax() {
  		double max = -1;
  		for (int i = 0; i < numberOfIntersections; i++)
