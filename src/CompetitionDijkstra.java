@@ -51,8 +51,7 @@ public class CompetitionDijkstra {
     }
 
  // initialise the array and get slowest person
- 	private void initialiseArray() {
- 		System.out.println(Integer.MAX_VALUE);   
+ 	private void initialiseArray() {  
  		try {
  			BufferedReader br = new BufferedReader(new FileReader(filename));
  			numberOfIntersections = Integer.parseInt(br.readLine());
