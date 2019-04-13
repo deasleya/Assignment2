@@ -19,29 +19,6 @@ import java.io.*;
 
 public class CompetitionDijkstra {
 	
-	/*public static void main(String[] args){
-		BufferedReader br;
-		try {
-			FileReader fr = new FileReader("C:\\Users\\Owner\\Documents\\2nd Year\\CS2010\\Assignment2\\src\\tinyEWD.txt");
-			br = new BufferedReader(fr);
-			String line = null;
-			//line = br.readLine();
-			int is = Integer.parseInt(br.readLine());
-			int stre = Integer.parseInt(br.readLine());
-			System.out.println(is + "\n" + stre);
-			 while ((line=br.readLine()) != null) {
-			   System.out.println(line);
-			 }
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 
-	}*/
-	
 	private static final double INFINITY = Integer.MAX_VALUE;
 	
 	String filename;
@@ -88,8 +65,9 @@ public class CompetitionDijkstra {
  						cityRoadNetwork[i][j] = INFINITY;  //Begin by setting all values in array to infinity
 
  				//read file and add to array
- 				String line = br.readLine();
- 				while (line != null) {
+ 				//String line = br.readLine();
+ 				String line;
+ 				while ((line=br.readLine()) != null) {
  					String[] linesInFile = line.split(" ");
  					cityRoadNetwork[Integer.parseInt(linesInFile[0])][Integer.parseInt(linesInFile[1])] = Double.parseDouble(linesInFile[2]);
  				}
