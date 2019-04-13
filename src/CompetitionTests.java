@@ -20,43 +20,37 @@ public class CompetitionTests {
 
 	String file1 = "C:\\Users\\Owner\\Documents\\2nd Year\\CS2010\\tinyEWD.txt";
 	String file2 = "C:\\Users\\Owner\\Documents\\2nd Year\\CS2010\\1000EWD.txt";
-	//String file2 = "C://Users//Owner//Documents//2nd Year//CS2010//Assignment2//1000EWD.txt";
-	//String file1 = "tinyEWD.txt";
-	//String file2 = "1000EWD.txt";
 	int result;
+	int expectedResult;
+	int sA, sB, sC;
 	
-    @Test
-    public void testDijkstraConstructor() {
-    	//String file1 = "C:\\Users\\Owner\\Documents\\2nd Year\\CS2010\\tinyEWD.txt";
-    	int sA=60, sB=80, sC=50;
-    	//System.out.println(file2);
-    	CompetitionDijkstra acm = new CompetitionDijkstra(file2, sA,sB,sC);
-    	assertEquals(50, acm.slowestWalkingSpeed);
-    	result = acm.timeRequiredforCompetition();
-    	System.out.println(result);
-    }
- 
-/*
+   
     @Test 
     public void testDijkstra() {
 
-    	CompetitionDijkstra comp = new CompetitionDijkstra("input-I.txt", 60,70,84);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 60);
-
-    	comp.timeRequiredforCompetition();
-
-  
-
-    	comp = new CompetitionDijkstra("input-J.txt", 70,60,84);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 60);
-
+    	//Valid file, valid input
+    	sA=60;
+    	sB=80;
+    	sC=50;
+    	CompetitionDijkstra acm = new CompetitionDijkstra(file1, sA,sB,sC);
+    	assertEquals(50, acm.slowestWalkingSpeed);
+    	assertEquals(true, acm.validFile);
+    	expectedResult = 38;
+    	result = acm.timeRequiredforCompetition();
+    	assertEquals(expectedResult, result);
     	
-
-    	comp = new CompetitionDijkstra("input-J.txt", 90,60,50);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 50);
+    	//Valid file, invalid input (sA < 50)
+    	sA=40;
+    	sB=80;
+    	sC=50;
+    	acm = new CompetitionDijkstra(file1, sA,sB,sC);
+    	assertEquals(40, acm.slowestWalkingSpeed);
+    	assertEquals(true, acm.validFile);
+    	expectedResult = -1;
+    	result = acm.timeRequiredforCompetition();
+    	assertEquals(expectedResult, result);
+    	
+    	//add test for invalid file i.e. zero streets/intersections
 
     }
 
@@ -64,63 +58,33 @@ public class CompetitionTests {
 
     @Test
 
-    public void testFWConstructor() {
+    public void testFloydWarshall() {
 
-    	CompetitionFloydWarshall comp = new CompetitionFloydWarshall("input-I.txt", 60,70,84);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 60);
-
-  
-
-    	comp = new CompetitionFloydWarshall("input-J.txt", 70,60,84);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 60);
-
+    	//Valid file, valid input
+    	sA=90;
+    	sB=80;
+    	sC=50;
+    	CompetitionFloydWarshall acm = new CompetitionFloydWarshall(file1, sA,sB,sC);
+    	assertEquals(50, acm.slowestWalkingSpeed);
+    	result = acm.timeRequiredforCompetition();
+    	expectedResult = 38;
+    	result = acm.timeRequiredforCompetition();
+    	assertEquals(expectedResult, result);
     	
-
-    	comp = new CompetitionFloydWarshall("input-J.txt", 90,60,50);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 50);
-
+    	//Valid file, invalid input (sA < 50)
+    	sA=40;
+    	sB=80;
+    	sC=50;
+    	acm = new CompetitionFloydWarshall(file1, sA,sB,sC);
+    	assertEquals(40, acm.slowestWalkingSpeed);
+    	assertEquals(true, acm.validFile);
+    	expectedResult = -1;
+    	result = acm.timeRequiredforCompetition();
+    	assertEquals(expectedResult, result);
     	
-
-    	comp = new CompetitionFloydWarshall("notARealInputFile.txt", 70,60,84);
-
-    	assertEquals("constructor failed with valid input", comp.fileInvalid, true);
-
-    	
-
-    	comp = new CompetitionFloydWarshall("input-noStreets.txt", 70,60,84);
-
-    	assertEquals("constructor failed with valid input", comp.fileInvalid, true);
+    	//add test for invalid file i.e. zero streets/intersections
 
     }
-
-    
-
-    @Test
-
-    public void testFW() {
-
-    	CompetitionFloydWarshall comp = new CompetitionFloydWarshall("input-I.txt", 60,70,84);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 60);
-
-    	comp.timeRequiredforCompetition();
-
-  
-
-    	comp = new CompetitionFloydWarshall("input-J.txt", 70,60,84);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 60);
-
-    	
-
-    	comp = new CompetitionFloydWarshall("input-J.txt", 90,60,50);
-
-    	assertEquals("constructor failed with valid input", comp.slowest, 50);
-
-    }*/
     
 }
     

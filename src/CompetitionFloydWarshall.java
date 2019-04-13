@@ -67,8 +67,8 @@ public class CompetitionFloydWarshall {
  						cityRoadNetwork[i][j] = INFINITY;  //Begin by setting all values in array to infinity
 
  				//read file and add to array
- 				String line = br.readLine();
- 				while (line != null) {
+ 				String line;
+ 				while ((line = br.readLine()) != null) {
  					String[] linesInFile = line.split(" ");
  					cityRoadNetwork[Integer.parseInt(linesInFile[0])][Integer.parseInt(linesInFile[1])] = Double.parseDouble(linesInFile[2]);
  				}
