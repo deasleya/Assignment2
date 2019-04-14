@@ -10,6 +10,8 @@ Dijkstra works from one node to one goal, and we would expect it to run in O(V^2
 Floyd-Warshall works with pairs and is more exhaustive. We would expect it to run in O(V^3), slower than Dijkstra, but given the nature of this problem, probably the more suitable approach.
 */ 
 
+//Created text file invalidFile to test case where there are 0  intersections
+
 //@author Aine Deasley
 
 import static org.junit.Assert.*;
