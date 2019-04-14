@@ -31,11 +31,11 @@ public class CompetitionTests {
     	//Valid file, valid input
     	sA=60;
     	sB=80;
-    	sC=50;
-    	CompetitionDijkstra acm = new CompetitionDijkstra(file1, sA,sB,sC);
-    	assertEquals(50, acm.slowestWalkingSpeed);
+    	sC=75;
+    	CompetitionDijkstra acm = new CompetitionDijkstra("tinyEWD.txt", sA,sB,sC);
+    	assertEquals(60, acm.slowestWalkingSpeed);
     	assertEquals(true, acm.validFile);
-    	expectedResult = 38;
+    	expectedResult = 31;
     	result = acm.timeRequiredforCompetition();
     	assertEquals(expectedResult, result);
     	
@@ -43,14 +43,23 @@ public class CompetitionTests {
     	sA=40;
     	sB=80;
     	sC=50;
-    	acm = new CompetitionDijkstra(file1, sA,sB,sC);
+    	acm = new CompetitionDijkstra("tinyEWD.txt", sA,sB,sC);
     	assertEquals(40, acm.slowestWalkingSpeed);
     	assertEquals(true, acm.validFile);
     	expectedResult = -1;
     	result = acm.timeRequiredforCompetition();
     	assertEquals(expectedResult, result);
     	
-    	//add test for invalid file i.e. zero streets/intersections
+    	//Invalid file
+    	sA=90;
+    	sB=80;
+    	sC=50;
+    	acm = new CompetitionDijkstra("invalidFile.txt", sA,sB,sC);
+    	assertEquals(50, acm.slowestWalkingSpeed);
+    	assertEquals(false, acm.validFile);
+    	expectedResult = -1;
+    	result = acm.timeRequiredforCompetition();
+    	assertEquals(expectedResult, result);
 
     }
 
@@ -64,7 +73,7 @@ public class CompetitionTests {
     	sA=90;
     	sB=80;
     	sC=50;
-    	CompetitionFloydWarshall acm = new CompetitionFloydWarshall(file1, sA,sB,sC);
+    	CompetitionFloydWarshall acm = new CompetitionFloydWarshall("tinyEWD.txt", sA,sB,sC);
     	assertEquals(50, acm.slowestWalkingSpeed);
     	result = acm.timeRequiredforCompetition();
     	expectedResult = 38;
@@ -75,14 +84,23 @@ public class CompetitionTests {
     	sA=40;
     	sB=80;
     	sC=50;
-    	acm = new CompetitionFloydWarshall(file1, sA,sB,sC);
+    	acm = new CompetitionFloydWarshall("tinyEWD.txt", sA,sB,sC);
     	assertEquals(40, acm.slowestWalkingSpeed);
     	assertEquals(true, acm.validFile);
     	expectedResult = -1;
     	result = acm.timeRequiredforCompetition();
     	assertEquals(expectedResult, result);
     	
-    	//add test for invalid file i.e. zero streets/intersections
+    	//invalid file
+    	sA=90;
+    	sB=80;
+    	sC=50;
+    	acm = new CompetitionFloydWarshall("invalidFile.txt", sA,sB,sC);
+    	assertEquals(50, acm.slowestWalkingSpeed);
+    	assertEquals(false, acm.validFile);
+    	expectedResult = -1;
+    	result = acm.timeRequiredforCompetition();
+    	assertEquals(expectedResult, result);
 
     }
     

@@ -95,9 +95,7 @@ public class CompetitionDijkstra {
  			FileReader fr = new FileReader(filename);
  			BufferedReader br = new BufferedReader(fr);
  			numberOfIntersections = Integer.parseInt(br.readLine());
- 			//System.out.println(numberOfIntersections);
  			numberOfStreets = Integer.parseInt(br.readLine());
- 			//System.out.println(numberOfStreets);
  			if (numberOfIntersections == 0 || numberOfStreets == 0)
  				validFile = false;
  			else {
@@ -117,7 +115,6 @@ public class CompetitionDijkstra {
  			}
  		} catch (Exception e) {
  			validFile = false;
- 			System.out.println("YIKES");
  		}
 
  		
