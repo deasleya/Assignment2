@@ -55,9 +55,9 @@ public class CompetitionTests {
     	//Invalid file
     	sA=90;
     	sB=80;
-    	sC=50;
+    	sC=90;
     	acm = new CompetitionDijkstra("invalidFile.txt", sA,sB,sC);
-    	assertEquals(50, acm.slowestWalkingSpeed);
+    	assertEquals(80, acm.slowestWalkingSpeed);
     	assertEquals(false, acm.validFile);
     	expectedResult = -1;
     	result = acm.timeRequiredforCompetition();
@@ -85,7 +85,7 @@ public class CompetitionTests {
     	//Valid file, invalid input (sA < 50)
     	sA=40;
     	sB=80;
-    	sC=50;
+    	sC=100;
     	acm = new CompetitionFloydWarshall("tinyEWD.txt", sA,sB,sC);
     	assertEquals(40, acm.slowestWalkingSpeed);
     	assertEquals(true, acm.validFile);
@@ -96,9 +96,9 @@ public class CompetitionTests {
     	//invalid file
     	sA=90;
     	sB=80;
-    	sC=50;
+    	sC=90;
     	acm = new CompetitionFloydWarshall("invalidFile.txt", sA,sB,sC);
-    	assertEquals(50, acm.slowestWalkingSpeed);
+    	assertEquals(80, acm.slowestWalkingSpeed);
     	assertEquals(false, acm.validFile);
     	expectedResult = -1;
     	result = acm.timeRequiredforCompetition();
