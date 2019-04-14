@@ -48,6 +48,46 @@ public class CompetitionDijkstra {
 		else
 			slowestWalkingSpeed = sC;
     }
+  /*  
+    private void testboi(){
+    	String line ="  7   9 0.07146000";
+    	String shorterLine;
+    	//first number is double digits
+			if(line.charAt(0)==' '){
+				shorterLine = line.substring(1);
+				System.out.println(shorterLine);
+				//first number is single digit
+				if(shorterLine.charAt(0)==' '){
+					shorterLine = shorterLine.substring(1);
+					System.out.println(shorterLine);
+					//second number is 2 digits
+					if(shorterLine.charAt(2)==' '){
+						shorterLine = shorterLine.substring(0,2)+shorterLine.substring(3);
+						System.out.println(shorterLine);
+						//second number is 1 digit
+						if(shorterLine.charAt(2)==' ')
+							shorterLine = shorterLine.substring(0,2)+shorterLine.substring(3);
+						System.out.println(shorterLine);
+					}
+				}
+				//second number is 2 digits
+				if(shorterLine.charAt(3)==' '){
+					shorterLine = shorterLine.substring(0,3) + shorterLine.substring(4);
+					//second number is 1 digit
+					if(shorterLine.charAt(3)==' '){
+						shorterLine = shorterLine.substring(0,3) + shorterLine.substring(4);
+					}
+				}
+			}
+			//second number is 2 digits
+			if(line.charAt(4)==' '){
+				shorterLine = line.substring(0,4) + line.substring(5);
+				//second number is 1 digit
+				if(shorterLine.charAt(4)==' ')
+					shorterLine = shorterLine.substring(0,4) + shorterLine.substring(5);
+			}
+			linesInFile = shorterLine.split(" ");
+    }*/
 
  //create an array to implement Dijkstra shortest path algorithm
  	private void initialiseArray() {  
@@ -55,7 +95,9 @@ public class CompetitionDijkstra {
  			FileReader fr = new FileReader(filename);
  			BufferedReader br = new BufferedReader(fr);
  			numberOfIntersections = Integer.parseInt(br.readLine());
+ 			//System.out.println(numberOfIntersections);
  			numberOfStreets = Integer.parseInt(br.readLine());
+ 			//System.out.println(numberOfStreets);
  			if (numberOfIntersections == 0 || numberOfStreets == 0)
  				validFile = false;
  			else {
@@ -65,16 +107,17 @@ public class CompetitionDijkstra {
  						cityRoadNetwork[i][j] = INFINITY;  //Begin by setting all values in array to infinity
 
  				//read file and add to array
- 				//String line = br.readLine();
  				String line;
  				while ((line=br.readLine()) != null) {
  					String[] linesInFile = line.split(" ");
  					cityRoadNetwork[Integer.parseInt(linesInFile[0])][Integer.parseInt(linesInFile[1])] = Double.parseDouble(linesInFile[2]);
  				}
+ 				
  				br.close();
  			}
  		} catch (Exception e) {
  			validFile = false;
+ 			System.out.println("YIKES");
  		}
 
  		
